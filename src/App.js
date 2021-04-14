@@ -3,6 +3,7 @@ import './App.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
+
 function App() {
   const productStyle = {
     border: '1px solid gray',
@@ -26,8 +27,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>i'm a react persone</h1>
-
+      <Azim name={nayoks[2]} naika="Moushumi" food="Fushka" ></Azim>
+      <Azim name={nayoks[1]} naika="Shabana" food="Chotpoti"></Azim>
+      <Azim name={nayoks[4]} naika="Shabnur" food="Noodles"></Azim>
+        <Users></Users>
         <Counter></Counter>
 
         <ul style={productStyle}>
@@ -35,29 +38,52 @@ function App() {
             nayoks.map(nayok => <li>{nayok}</li>)
           }
         </ul>
-        <ul style={productStyle}>
-          {
-            products.map(product => <li>{product.name}</li>)
-          }
-        </ul>
-        {
-          products.map(product => <Product product={product}></Product>)
-        }
+       { products.map(pd => <Product product={pd}></Product>)}
       </header>
     </div>
   );
 }
-function Counter() {
-  const [count, setCount] = useState(10);
-  // const handleIncrease = () => setCount(count+1);
+function Azim(props){
+  const personStyle={
+    border:'2px solid yellow',
+    color:'red',
+    margin: '5px'
+  }
+console.log(props)
   return (
+    <div style={personStyle}>
+      <h2>Name: {props.name}</h2>
+      <h3>Name: {props.naika}</h3>
+  
+    </div>
+  )
+}
+// function Counter() {
+//   const [count, setCount] = useState(10);
+//   // const handleIncrease = () => setCount(count+1);
+//   return (
+//     <div>
+//       <h1>Count: {count}</h1>
+//       <button onMouseMove={() => setCount(count + 1)}>Increase</button>
+//       <button onClick={() => setCount(count - 1)}>Decrease</button>
+//     </div>
+//   )
+// }
+
+function Counter(){
+  const [count, setCount]= useState(10);
+  const handleIncrease = () => {
+    setCount(count + 1);
+  };
+  return(
     <div>
       <h1>Count: {count}</h1>
-      <button onMouseMove={() => setCount(count + 1)}>Increase</button>
+      <button onClick={() => setCount(count + 1)}>Increase</button>
       <button onClick={() => setCount(count - 1)}>Decrease</button>
     </div>
   )
 }
+
 function Users() {
   const [users, setUsers] = useState([]);
   useEffect(() => {
@@ -68,13 +94,19 @@ function Users() {
   }, [])
   return (
     <div>
-      <h3>Dynamic Users: {users.length}</h3>
-      <ul>
-        {
-          console.log(users)
-        }
+      <h3>Dynamic Users abc: {users.length}</h3>
+
+      <ul style={{border:'2px solid red', backgroundColor:'darkgreen' }} >
+        <h3>all names</h3>
         {
           users.map(user => <li>{user.name}</li>)
+        }
+      </ul>
+
+      <ul style={{border:'2px solid red', backgroundColor:'green'}}>
+      <h3>all emails</h3>
+        {
+          users.map(user => <li>{user.email}</li>)
         }
       </ul>
 
@@ -86,11 +118,9 @@ function Product(props) {
     border: '1px solid gray',
     borderRadius: '5px',
     backgroundColor: 'lightblue',
-    height: '250px',
+    height: '350px',
     width: '200px',
-    padding: '10px',
-    // float:'left',
-    // display:'block'
+    padding: '5px',
   }
   const { name, Price } = props.product;
   // console.log(name, Price)
@@ -117,5 +147,6 @@ function Person(props) {
     </div>
   )
 }
+
 
 export default App;
